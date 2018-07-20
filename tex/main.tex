@@ -1,0 +1,259 @@
+\documentclass[letterpaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage[backend=biber, 
+            style=ieee, 
+            citestyle=numeric-comp,
+            url=false,
+            isbn=false,
+            giveninits=true,
+            hyperref=auto,
+            eprint=false,
+            maxcitenames=2,
+            mincitenames=1]{biblatex}
+\usepackage{hyperref}
+\usepackage{parskip}
+\usepackage{enumitem}
+\usepackage{fontspec}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{12pt}
+\renewcommand{\baselinestretch}{1.4}
+\setmainfont{Noto Serif}
+\addbibresource{references.bib}
+
+\begin{document}
+
+   \noindent           
+   {\bf \Large Note for overland flow modeling}\\
+   {\bf \normalsize Pi-Yueh Chuang, Jul. 2018}
+
+The start point of this note is to understand the common prediction 
+models for the overland spill of non-aqueous phase liquids (NAPLs). 
+NAPLs include, for example, crude oil, gasoline, petroleum products, etc. 
+The spreading behavior after liquids spilled on land depends on many factors, 
+such as drainage, infiltration, evaporation, weathers (e.g., rainfall \& wind), 
+etc.\ \cite{Simmons2003}.
+Many studies currently found, however, only consider simplified models that only
+involve three factors: evaporation, infiltration, and surface flow
+\ \cite{Hussein2002, Ronnie2004, Zuczek2008}. 
+Adhesion of oil to land is considered by\ \cite{Farrar2005}. 
+At the current stage, I focus only on the modeling of surface flow on land and 
+leave other factors for the future.
+
+I could only find a handful of research in overland oil flow. 
+Some of them are more mathematical and physical 
+\ \cite{Hussein2002, Simmons2003, Guo2006} 
+but are limited to simple geometries, such as a horizontal plate or an incline 
+with a constant gradient. 
+Others are instead designed for real-world situations, complicated topographies,
+and more computer-oriented
+\ \cite{Ronnie2004, Farrar2005, Zuczek2008, Gin2012, Su2017}.
+The underlying flow models used by some of the later ones, however, are somehow 
+far away from the first principle, in my opinion.
+The work of \textcite{Su2017} may be the most relevant to what we are interested 
+in. 
+See the section of the shallow-water equation models.
+
+\section{Overland spill models for simple geometries}
+
+\subsection{\textcite{Hussein2002}}
+
+\textcite{Hussein2002} propose what may be the first model that couples surface
+flow, evaporation, and infiltration. 
+The flow model used is based on gravity current models\ \cite{Huppert1982, Lister1992}. 
+Gravity current models study the behavior of a fluid horizontally flowing into 
+another fluid with a different density. 
+Examples are cold air flowing into hot air, and salt water flowing into
+the fresh water. 
+In the context of overland oil flow, the idea is to treat oil as a dense fluid 
+flowing into a light fluid, which is air in this case.
+\textcite{Hussein2002} couple the gravity current models of
+\ \cite{Huppert1982, Lister1992} with an infiltration model\ \cite{Weaver1994} 
+and an evaporation model\ \cite{Stiver1989}.
+
+The gravity current models used are limited to cases of a point source or a line 
+source of fluid flowing on a horizontal flat plate or an incline with a constant 
+gradient in one-dimensional flow approximation.
+The equations can thus provide time-dependent data of thickness profiles and
+the locations of flow front. 
+In the work of \textcite{Hussein2002}, however, they do not utilize the full 
+gravity current models.
+They only use the part that predicts the location of flow front with respect
+to time. 
+Thickness in their work is an averaged thickness calculated by total volume
+and spill size.
+
+The way \textcite{Hussein2002} couple the flow with infiltration and evaporation
+is through the calculation of effective fluid volumes. The equation to predict
+the location of the front depends on the volume of fluid. So utilizing an
+effective volume, which is the net value of inflow (point/line source) and
+outflow (infiltration and evaporation), couples the three factors.
+
+\subsection{\textcite{Simmons2003}}
+
+\textcite{Simmons2003}, on the other hand, re-derive the equation for the 
+prediction of the flow front based on the work of \textcite{Hussein2002}. 
+The difference lies in that the equation derived by \textcite{Simmons2003} 
+depends on the averaged thickness and present front location, instead of the
+flow volume.
+
+\subsection{Other comments}
+
+In the derivation of one of the gravity current models\ \cite{Huppert1982}, an
+assumption is made before the derivation: the two fluids do not have 
+significantly different viscosities. 
+In overland oil spills, however, the viscosity of oil may be very different from 
+air, which violates the assumption.
+This will require more digging in the literature in the future if there's any 
+chance we are going to use gravity current models.
+
+Also, there are some other models in this category require further study to 
+have better understandings:
+
+\begin{enumerate}[noitemsep]
+    \item \textcite{Acton2001} develop a more complicated gravity current model
+        for flow on permeable plates.
+    \item \textcite{Guo2006} presents a model for asphalt oil flowing on  
+        sloping ground.
+\end{enumerate}
+
+
+\section{Overland spill models for complex topographies}
+
+I further divided the models in this category into two sub-categories: 
+the steepest route models and shallow-water equations.
+
+\subsection{The steepest route models}
+
+From my feeling, this type of models seems to be popular among the commercial
+software for a risk-evaluation purpose. 
+Due to the confidential nature of commercial software, however, papers of this 
+type usually don't provide details of their models, algorithms, and 
+implementations. 
+Nevertheless, they are still good enough to have a basic understanding.
+
+In the model of the steepest route, the surface flow can generally be separated 
+into two processes: flow trajectory calculation and flow property calculation. 
+During the flow trajectory calculation, the gradient of a cell is used to 
+determine which in the 8 surrounding cells the oil in the current cell will go
+toward.
+Then we can obtain the path of the oil flow, beginning from the point 
+source and ending at the intersection with river/lake/ocean or some other 
+barriers blocking the oil flow. 
+The path of the oil flow, however, does not have any other flow information, 
+such as thickness distribution, time history of the front, etc.
+So the flow property calculation process is carried out after finding the path.
+The difference between models or software lies in the methods for calculating 
+the flow property. See the following subsections for comments.
+
+\subsubsection{\textcite{Ronnie2004}}
+
+The flow property calculation is done right after the flow front is moved from 
+one cell to the next cell by the steepest route. 
+After the movement of the flow front, the flow properties at the current cell 
+(the cell where the front is currently in) is calculated with the LSMS 
+model\ \cite{Linden1998}. 
+Data from the LSMS model are not calculated on the fly. 
+A table of data is calculated in advance based on the soil property in the 
+area of interest. 
+During the simulation, then, flow properties are obtained from the table and 
+interpolation.
+
+The LSMS model requires a further reading. At a glance, LSMS seems to solve 
+one-dimensional shallow-water equation coupled with infiltration and evaporation
+models. LSMS can provide data like depth, velocity, temperature, spread and 
+vaporization rates\ \cite{Ronnie2004}.
+
+The paper gives an example of the simulation of a real case occurred at 
+Bellingham, Washington on June 10th 1999.
+
+\subsubsection{\textcite{Farrar2005}}
+
+This paper focuses on coupling GIS technology and oil spill modeling but also 
+briefly mentions the overland flow model they are using. 
+The steepest route model for flow path is described in the paper, but at what 
+timing during the procedure they calculate the flow property is unclear to me.
+
+Their model includes adhesion and evaporation. 
+See the paper for the adhesion and evaporation models they are using.
+The velocity of the flow front is calculated by Manning's equation.
+
+\subsubsection{\textcite{Zuczek2008}}
+
+The work of \textcite{Zuczek2008} presents a complicated model for risk analysis
+and estimated costs for response and environmental damage. The code is developed
+with VBA as an extension to ArcGIS.
+
+In a nutshell, they apply the work of \textcite{Hussein2002} to calculate flow 
+properties after the path of flow is determined.
+
+\subsection{Shallow-water equations (SWEs)}
+
+Shallow-water equations (SWEs), also called Saint-Venant equations, is widely 
+used for simulations of hydrologic problems, e.g., tsunami\ \cite{Arcos2015}, 
+flood\ \cite{Bates2000, Zhang2007, Hunter2007}, 
+rivers streams\ \cite{Gouta2002, Burguete2004}, 
+rainfall runoff\ \cite{Esteves2000}, 
+dam breaks\ \cite{Xanthopoulos1976, Brufau2000}, etc. 
+In the 90s', 1D shallow-water equation is used due to limited computing power. 
+However, 2D shallow-water equation becomes popular in the 21st century because of 
+the advancement of computing power.
+
+Besides the full SWEs, two types of simplified SWEs exist and are also popular:
+kinematic wave approximation and diffusive wave approximation.
+Kinematic wave approximation ignores the local acceleration (time derivatives), 
+convection and pressure forces in the momentum equations.
+This implies the gravity is in balance with the friction of fluid and ground.
+On the other hand, diffusive wave approximation ignores only the local 
+acceleration and convection and retains pressure, gravity, and friction effects.
+One key reason for using the simplified models is to ease the need for computing 
+resource.
+Another reason is the concerns of numerical issues arising from solving the
+full SWEs, such as numerical stability and convergence. 
+See\ \cite{HEC-11993, Kazezyilmaz-Alhan2012} for more information and 
+limitations of the simplified models.
+
+Currently, I found only one possible paper regarding applying the full SWEs to 
+simulate overland oil flow.
+\textcite{Gin2012} present a case study of spill analysis on a 
+segment of crude oil pipeline near the Edmonton South Terminal in the area of 
+Sherwood Park, AB, Canada. 
+The paper only briefly mentions that they are using their proprietary 
+software, FLO-2D, for the overland oil flow. 
+From the limited information revealed in the paper, it looks like FLO-2D is 
+solving the full dynamic wave equation, which to my understanding, is another
+name of the full SWEs.
+No further information or details about the overland flow solver presents in the
+paper. 
+
+On the other hand, \textcite{Su2017} present a work that solves the diffusive
+wave approximation of SWEs for overland crude oil flow.
+They carry out simulations of the spreading of crude oil after some tanks break 
+at a storage site. 
+The underlying flow solver comes from the work of \textcite{Bates2000} for flood 
+simulations.
+\textcite{Su2017} modify the flow solver so that the friction model is based
+on the Darcy-Weisbach equation, instead of Manning's equation.
+
+
+\section{Other}
+
+Here are some papers that I think may be related but I don't have time to dig
+deeper:
+
+\begin{enumerate}[noitemsep]
+    \item \textcite{Paige2002} show an interface of their software that looks
+        like is capable of overland flow simulations of oil. However, no useful
+        information about the model presents.
+    \item \textcite{Linden1998} describe a model for predicting the spreading
+        and vaporization of spills of cryogenic liquids, such as liquefied 
+        natural gas. The model seems to be based on the SWEs.
+    \item \textcite{Ponchaut2011} utilize the SWEs to study the characteristics
+        of the evaporation during spills of liquefied natural gas.
+\end{enumerate}
+
+
+\printbibliography
+\end{document}
