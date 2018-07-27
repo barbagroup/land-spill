@@ -1,7 +1,0 @@
-# Statement of Work
-
-G2 Integrated Solutions ([G2-IS](https://g2-is.com)) would like to upgrade their capacity to simulate spreading of oil products from pipeline breakage events.
-Such simulations may be part of the analysis aimed at understanding the potential damage from release of liquid hydrocarbons, 
-which federal regulators require of interstate pipeline operators. 
-A current simplified model uses the steepest route on a topography, obtained using the 
-[ArcGIS](https://www.esri.com/en-us/arcgis/about-arcgis/overview) mapping platform.
