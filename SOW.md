@@ -50,3 +50,9 @@ All software deliverables will open source, under a permissive license.
 	* Study the use of Amazon AWS or other cloud services.
 	* Output to commonly used GIS file formats: e.g., NetCDF.
 	* Consider the workflow using Windows systems.
+	
+4. Possible model improvements (research questions):
+
+	* Study the effect of Darcy friction factor.
+	* Consider the effect of surface tension.
+	* Consider the effect of weather conditions: winds, rains, etc.
