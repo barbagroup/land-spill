@@ -40,3 +40,13 @@ All software deliverables will open source, under a permissive license.
 	* Experimenting with different settings for adaptive mesh refinement.
 	* Modifying the code to ignore dry regions.
 	* Investigating the use of adaptive time steps.
+
+3. Refining of a workflow for repeated simulation of rupture points, as part of a larger analysis. We will consider the following potential improvements, given that GeoClaw is not user-friendly:
+
+	* Create a simple way to launch simulations, without needing to re-compile for different initial conditions.
+	* Simplify the way to configure the various simulation parameters.
+	* Integrate with Jupyter Notebooks for seamless workflows and reports.
+	* Integrate with GIS software, as needed.
+	* Study the use of Amazon AWS or other cloud services.
+	* Output to commonly used GIS file formats: e.g., NetCDF.
+	* Consider the workflow using Windows systems.
