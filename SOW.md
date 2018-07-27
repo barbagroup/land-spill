@@ -26,11 +26,10 @@ All software deliverables will open source, under a permissive license.
 
 1. Modifications to the GeoClaw software will be required to extend its use from tsunami simulation (its original application),
 to overland hydrocarbon flows. The following modifications are likely to be needed:
-
   * Moving the friction term from Manning's equation to Darcy-Weisbach equation.
   * Implementing contact of the oil flow with rivers, ponds, lakes, pools, etc.
   * Allowing a configurable input for the locations and time histories of point sources, representing pipe rupture points.
   * Outflow boundary conditions from the domain.
   * Adding evaporation and infiltration models.
   
-Other modifications may also be required, based on the input from G2-IS during the course of this project.
+  Other modifications may also be required, based on the input from G2-IS during the course of this project.
