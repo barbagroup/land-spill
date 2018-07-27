@@ -17,3 +17,20 @@ As a starting point, we consider [GeoClaw](http://depts.washington.edu/clawpack/
 and based in the [Clawpack](http://www.clawpack.org) library for hyperbolic partial differential equations.
 These software are under the [3-clause BSD](https://opensource.org/licenses/BSD-3-Clause) open-source license,
 a permissive license allowing commercial uses.
+
+We will assess the appropriateness of the shallow-water-equations framework for the target scenario of overland flow
+from pipeline rupture points. We will also refine a workflow that G2-IS can adopt for regular use, according to requirements.
+All software deliverables will open source, under a permissive license.
+
+## Anticipated tasks
+
+1. Modifications to the GeoClaw software will be required to extend its use from tsunami simulation (its original application),
+to overland hydrocarbon flows. The following modifications are likely to be needed:
+
+  * Moving the friction term from Manning's equation to Darcy-Weisbach equation.
+  * Implementing contact of the oil flow with rivers, ponds, lakes, pools, etc.
+  * Allowing a configurable input for the locations and time histories of point sources, representing pipe rupture points.
+  * Outflow boundary conditions from the domain.
+  * Adding evaporation and infiltration models.
+  
+Other modifications may also be required, based on the input from G2-IS during the course of this project.
