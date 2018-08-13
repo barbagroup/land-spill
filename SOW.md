@@ -37,7 +37,7 @@ All software deliverables will open source, under the permissive 3-clause BSD li
 
 2. Performance improvement to achieve runtimes in the order of minutes per rupture point. Possible approaches include:
 
-	* Taking advantage of Clawpack's multi-core parallelism (OpenMP), including Graphical Processing Unit (GPU) processing.
+	* Taking advantage of Clawpack's multi-core parallelism (OpenMP).
 	* Experimenting with different settings for Adaptive Mesh Refinement (AMR).
 	* Modifying the code to ignore dry regions.
 	* Investigating the use of adaptive time steps.
