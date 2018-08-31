@@ -162,4 +162,53 @@ we should do this in the future, if possible.
       It's not exactly "freely downloadable" software, from my personal viewpoint.
 
 ## GeoClaw
+
+* Website:
+    * Official website: http://depts.washington.edu/clawpack/geoclaw/
+    * GitHub repo: https://github.com/clawpack/geoclaw
+
+* Papers:
+    * Berger, M. J., George, D. L., LeVeque, R. J., & Mandli, K. T. (2011). The 
+      GeoClaw software for depth-averaged flows with adaptive refinement. 
+      Advances in Water Resources, 34(9), 1195–1206.
+    * González, F. I., Leveque, R. J., Chamberlain, P., Hirai, B., Varkovitzky, 
+      J., & George, D. L. (2011). Validation of the GeoClaw Model. In NTHMP MMS 
+      Tsunami Inundation Model Validation Workshop.
+    * Arcos, M. E. M., & LeVeque, R. J. (2015). Validating Velocities in the 
+      GeoClaw Tsunami Model Using Observations near Hawaii from the 2011 Tohoku
+      Tsunami. Pure and Applied Geophysics, 172(3–4), 849–867.
+    * LeVeque, R. J., George, D. L., & Berger, M. J. (2011). Tsunami modelling 
+      with adaptively refined finite volume methods. Acta Numerica, 20(2011), 
+      211–289.
+
+* Solver features:
+    * Topography handling
+    * Manning's friction model
+    * Adaptive mesh refinement
+    * Adaptive time stepping
+    * OpenMP parallelization
+    * Well-balance schemes
+    * Dry/wet handling and positive preserving
+
+* Source code:
+    * Language: Fortran 77, Fortran 95, and Python
+    * Users need to write some Fortran code/routine and re-compile the program
+      to set up simulations.
+    * The source code and software design is not difficult to understand.
+
+* Software usability:
+    * Several topography file formats are accepted: Esri ASCII and NetCDF
+    * Output file format includes Esri ASCII format files.
+    * GeoClaw uses Python script to specify simulation settings and parameters.
+
+* License: BSD 3-Clause
+
+* Support and development: active
+
+* Drawbacks:
+    * No support to distributed-memory systems.
+    * No NetCDF output support.
+    * The core kernels are in Fortran 77 fixed format, which is annoying and
+      not friendly from the aspect of code modification.
+
 ## Gerris/Basilisk
