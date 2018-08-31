@@ -136,5 +136,30 @@ we should do this in the future, if possible.
     * Doesn't seem to have outflow/open BC.
 
 ## DassFlow
+
+* Website: http://www.math.univ-toulouse.fr/DassFlow/
+
+* Papers: https://www.math.univ-toulouse.fr/DassFlow/references.html
+
+* Solver feature:
+    * MPI parallelization
+    * Manning's friction model
+    * Wet/dry problem
+    * Well-balance schemes
+    * Topology
+
+* Source code:
+    * Language: Fortran and Python
+
+* License: CeCILL (http://www.cecill.info/)
+
+* Support and development: active
+
+* Drawbacks:
+    * No AMR. They use unstructured meshes, which require manual pre-processing.
+    * To download the software, users require to fill some forms and waiting
+      their approvals. Also, users are asked to open an account on SourceSup.
+      It's not exactly "freely downloadable" software, from my personal viewpoint.
+
 ## GeoClaw
 ## Gerris/Basilisk
