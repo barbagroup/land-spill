@@ -257,3 +257,41 @@ We should do this in the future, if possible.
       binary will translate the DSL source into C and call GCC to compile it.
       From my viewpoint, it's not convenient, though it may be a good thing from
       the viewpoint of teaching a PDE class.
+
+## Reef3D
+
+* Websites: https://reef3d.wordpress.com/
+
+* Papers: https://reef3d.wordpress.com/publications-reef3d/
+
+* Solver features:
+    * MPI parallelization
+    * Adaptive time stepping
+    * Turbulence modeling
+    * Multigrid solvers (through Hypre)
+    * Many different numerical schemes available.
+
+* Source code:
+    * C++
+    * The source files are not well-organized. Everything is inside a single
+      folder. And due to Reef3D is a collection of three different flow solvers,
+      it's not easy to identify what are files or code for the SWE solver. And
+      the documentation is more end-user oriented, there's no mention of the
+      software design and no useful code documentation. Many undocumented source
+      files.
+
+* License: The users' guide says it's GPL. But no license file or headers provided.
+
+* Support and development: active
+
+* Drawbacks:
+    * The main functionality of Reef3D is to solve 3D Navier-Stokes equations with 
+      free surfaces. Though Reef3D also has a 2D SWE solver, it's not 
+      well-documented. There's not even a single example for the 2D SWE solver.
+    * No AMR support. Reef3D uses unstructured meshes.
+    * No support for common topography file formats.
+    * Setting up the simulation parameters are not intutive. Reef3D uses characters
+      and codes to represet different parameters. It does not use readable strings
+      for that. For example, to set the time-step size with 0.01 sec, users have 
+      to write "N 49 0.01" in their input files, instead of something more readable
+      like "dt = 0.01".
