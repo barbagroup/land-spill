@@ -1,32 +1,33 @@
 # Available solver/code review
 
-We did a search for open-source shallow-water equation solvers and try to find
-candidates. Note we only focus on solvers for full 2D shallow-water equations. 
+We searched open-source shallow-water equation solvers and tried to find
+candidates. Note we only focused on solvers for full 2D shallow-water equations. 
 The solvers for diffusive or kinematic wave approximations are not considered 
 here. 
 
 The focuses are:
 
-1. Solver completeness: if a solver has more features that we require, it is 
-   deemed more complete because that means we need fewer code modifications.
+1. Solver completeness: if a solver has more features that we require, we deem 
+   it more complete because that means we need fewer code modifications.
 
-2. Difficulty of code modifications: we have to consider the programming
+2. The difficulty in modifying source code: we have to consider the programming
    language used and the code design of the candidate solvers. Easy-to-understand
    source code can facilitate the code modification tasks. The way to evaluate
-   this is somehow subjective, though.
+   this is somehow subjective, however.
 
-3. Software usability: we evaluate the software usability from users' aspect.
+3. Software usability: we evaluate the software usability from end-users' aspect.
 4. Open-source license.
-5. Support from original development teams: whether the development of the
-   solvers are still active and whether the developers will likely to respond issues.
+5. Support from original development teams: whether the developments of the
+   solvers are still active and whether the developers will likely to respond 
+   to issues.
 
-The required solver features includes:
+The essential solver features include:
 
 1. Topography term
 2. Friction models
 3. Adaptive mesh refinement
 4. Adaptive time steps
-4. Well-balance schemes
+4. Well-balanced schemes
 5. Dry/wet handling and positive preserving
 6. Outflow/open boundary conditions
 7. Parallelism (at least OpenMP)
@@ -38,15 +39,15 @@ The required solver features includes:
 We evaluate software usability based on the following required software features:
 
 1. Commonly-seen topography file format I/O: NetCDF (CF conventions) and Esri ASCII
-2. Commonly-seen hydrophysic data I/O
+2. Commonly-seen water body data or shapefiles I/O
 3. Compressed output files, such as compressed HDF5 or compressed NetCDF
 2. Methods to specify simulation parameters.
 3. Ways to launch simulation.
 
 Regarding the software usability, the performance should be a key factor from
-users' aspect. However, we exclude this factor in at this stage because we don't
-have enough time to conduct a thourough performance study and comparison. But
-we should do this in the future, if possible.
+users' aspect. However, we exclude this factor in at this stage because we do 
+not have enough time to conduct a thorough performance study and comparison. 
+We should do this in the future, if possible.
 
 ## FullSWOF: Full Shallow Water equations for Overland Flow
 
@@ -84,14 +85,14 @@ we should do this in the future, if possible.
 
 * Drawbacks:
     * The solver itself only accepts customized topography file format, though 
-      there is an utility for converting ArcGIS file format to the customized 
+      there is a utility for converting ArcGIS file format to the customized 
       format.
-    * No adaptive mesh refinement: a news in 2015 from software repo says now 
-      they support AMR, but no mention of AMR in the documentation, and no 
-      examples using AMR.
-    * Parallelization: a MPI version is under development and not yet released, 
+    * No adaptive mesh refinement: an otem of news in 2015 from software repo 
+      says now they support AMR, but no mention of AMR in the documentation, and 
+      no examples using AMR.
+    * Parallelization: an MPI version is under development and not yet released, 
       according to the 2017 paper. No mention of parallelization in the 
-      documention and no examples.
+      documentation and no examples.
 
 ## TELEMAC-MASCARET
 
@@ -124,15 +125,15 @@ we should do this in the future, if possible.
     * Parallel version requires some third-party domain partitioning library.
       This may be annoying when packaging the software and shipping it as an end 
       product.
-    * No AMR, but support unstructured mesh. However, I think unstructured mesh
-      is not suitable for automatical and batch simulation processes. Unstructured
-      mesh usually requires users' manual pre-processing.
-    * No support for commonly-used file formats. They use their own format. And
-      we'll have to read the manual to understand the format and develop some 
-      converters.
+    * No AMR, but support unstructured mesh. However, unstructured meshes may 
+      not be suitable for automatic and batched simulation processes. Unstructured
+      meshes usually require users' manual pre-processing.
+    * No support for commonly-used file formats. They use their own format for 
+      I/O. So we will have to read the manual to understand the format and develop 
+      some converters.
     * Lack of documentation for detailed numerical schemes or models used. 
-      However, the documentation is good for end-users who don't care about what 
-      are behind the software.
+      However, the documentation is useful for end-users who do not care about 
+      what is behind the software.
     * Doesn't seem to have outflow/open BC.
 
 ## DassFlow
@@ -145,7 +146,7 @@ we should do this in the future, if possible.
     * MPI parallelization
     * Manning's friction model
     * Wet/dry problem
-    * Well-balance schemes
+    * Well-balanced schemes
     * Topology
 
 * Source code:
@@ -157,8 +158,8 @@ we should do this in the future, if possible.
 
 * Drawbacks:
     * No AMR. They use unstructured meshes, which require manual pre-processing.
-    * To download the software, users require to fill some forms and waiting
-      their approvals. Also, users are asked to open an account on SourceSup.
+    * To download the software, users require to fill out some forms and waiting
+      for their approvals. Also, users are asked to create an account on SourceSup.
       It's not exactly "freely downloadable" software, from my personal viewpoint.
 
 ## GeoClaw
@@ -187,19 +188,19 @@ we should do this in the future, if possible.
     * Adaptive mesh refinement
     * Adaptive time stepping
     * OpenMP parallelization
-    * Well-balance schemes
+    * Well-balanced schemes
     * Dry/wet handling and positive preserving
 
 * Source code:
     * Language: Fortran 77, Fortran 95, and Python
-    * Users need to write some Fortran code/routine and re-compile the program
+    * Users need to write some Fortran code/routines and re-compile the program
       to set up simulations.
     * The source code and software design is not difficult to understand.
 
 * Software usability:
     * Several topography file formats are accepted: Esri ASCII and NetCDF
-    * Output file format includes Esri ASCII format files.
-    * GeoClaw uses Python script to specify simulation settings and parameters.
+    * Output file formats include Esri ASCII format.
+    * GeoClaw uses Python scripts to specify simulation settings and parameters.
 
 * License: BSD 3-Clause
 
@@ -251,8 +252,8 @@ we should do this in the future, if possible.
       purpose of teaching in numerical PDE classes. To extend the solver to 
       real-world applications, it may require a lot of work and may not be more 
       efficient than developing a solver from scratch.
-    * The DSL is largely based on C, and requires a compiler-like executabile 
-      binary file to parse the source code of the solver. The executabile
+    * The DSL is largely based on C, and requires a compiler-like executable 
+      binary file to parse the source code of the solver. The executable
       binary will translate the DSL source into C and call GCC to compile it.
       From my viewpoint, it's not convenient, though it may be a good thing from
       the viewpoint of teaching a PDE class.
