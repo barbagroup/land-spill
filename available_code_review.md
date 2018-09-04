@@ -211,4 +211,48 @@ we should do this in the future, if possible.
     * The core kernels are in Fortran 77 fixed format, which is annoying and
       not friendly from the aspect of code modification.
 
-## Gerris/Basilisk
+## Gerris
+
+* Website: http://gfs.sourceforge.net/
+
+* Gerris has stopped development for 5 years. And I'm not able to compile
+  and build it with the compilers and third-party dependencies currently
+  available on our workstations.
+
+## Basilisk
+
+* Websites: http://basilisk.fr/
+
+* Papers: 
+    * http://basilisk.fr/Bibliography
+    * Popinet, S. (2011). Quadtree-adaptive tsunami modelling. Ocean Dynamics, 
+      61(9), 1261-1285.
+
+* Solver features (the pre-built SWE solver):
+    * AMR
+    * Well-balanced
+    * Wet/dry problem and positivity-preserving
+    * Topography term
+
+* Source code:
+    * Language: C and its own domain-specific language (DSL)
+    * Basilisk is more like a toolbox or library for hyperbolic PDE solvers.
+      Users create their own solvers through a DSL-like language. There are
+      already some pre-built solvers provided in Bisilisk, and one of them is
+      a full SWE solver.
+    * The DSL-like language is largely based on C.
+
+* License: GPL-v3 
+
+* Support and development: active
+
+* Drawbacks:
+    * The pre-built SWE solver is very basic. The solver seems to be for the
+      purpose of teaching in numerical PDE classes. To extend the solver to 
+      real-world applications, it may require a lot of work and may not be more 
+      efficient than developing a solver from scratch.
+    * The DSL is largely based on C, and requires a compiler-like executabile 
+      binary file to parse the source code of the solver. The executabile
+      binary will translate the DSL source into C and call GCC to compile it.
+      From my viewpoint, it's not convenient, though it may be a good thing from
+      the viewpoint of teaching a PDE class.
