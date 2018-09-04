@@ -295,3 +295,18 @@ We should do this in the future, if possible.
       for that. For example, to set the time-step size with 0.01 sec, users have 
       to write "N 49 0.01" in their input files, instead of something more readable
       like "dt = 0.01".
+
+## Other possibilities:
+* ANUGA: 
+    * https://anuga.anu.edu.au/
+    * Still active
+    * Unstructured meshes
+* Firedrake-fluids
+    * https://github.com/firedrakeproject/firedrake-fluids
+    * Inactive for 3 years
+    * Looks like a toy project for one single paper
+    * Requires many third-party dependencies
+* Floodrake
+    * https://github.com/firedrakeproject/flooddrake
+    * Inactive for 1.5 year
+    * Looks like an one-man job or a student project
